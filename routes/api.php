@@ -1,0 +1,14 @@
+<?php
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\ChannelController;
+use App\Http\Controllers\AuthController;
+
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
+
+// API-Routen für Channels
+Route::apiResource('channels', ChannelController::class);
+Route::post('/users/register', [AuthController::class, 'register']);
