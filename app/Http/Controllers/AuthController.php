@@ -32,4 +32,32 @@ class AuthController extends Controller
             'token' => $token,
         ], 201);
     }
+
+    public function login(Request $request)
+{
+    $credentials = $request->validate([
+        'email' => 'required|email',
+        'password' => 'required|string'
+    ]);
+
+    $user = User::where('email', $credentials['email'])->first();
+
+    if (!$user || !\Hash::check($credentials['password'], $user->password)) {
+        return response()->json(['error' => 'Invalid credentials'], 401);
+    }
+
+    $token = $user->createToken('auth_token')->plainTextToken;
+
+    return response()->json([
+        'user'  => $user,
+        'token' => $token,
+    ]);
+}
+
+public function index()
+    {
+        // Hier ist der fehlende Part
+        return response()->json(User::all());
+    }
+
 }
