@@ -13,4 +13,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // API-Routen für Channels
 Route::apiResource('channels', ChannelController::class);
 Route::post('/users/register', [AuthController::class, 'register']);
+Route::post('/users/login', [AuthController::class, 'login']);
 Route::apiResource('tasks', TaskController::class);
+Route::get('/users', [AuthController::class, 'index']);

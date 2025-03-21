@@ -3,3 +3,5 @@
 
 <x-backpack::menu-item title="Channels" icon="la la-question" :link="backpack_url('channel')" />
 <x-backpack::menu-item title="Tasks" icon="la la-question" :link="backpack_url('task')" />
+<x-backpack::menu-item title="Users" icon="la la-question" :link="backpack_url('user')" />
+<x-backpack::menu-item title="Members" icon="la la-question" :link="backpack_url('members')" />

@@ -14,15 +14,25 @@ class CorsMiddleware
      * @param
      */
     public function handle(Request $request, Closure $next): Response
-    {
-        // Zuerst die Anfrage weiterleiten
-        $response = $next($request);
+{
+    $headers = [
+        'Access-Control-Allow-Origin'      => 'http://localhost:4200',
+        'Access-Control-Allow-Methods'     => 'GET, POST, PUT, DELETE, OPTIONS',
+        'Access-Control-Allow-Headers'     => 'Content-Type, Authorization, X-Requested-With, Accept, Origin',
+        'Access-Control-Allow-Credentials' => 'true'
+    ];
 
-        // Dann die CORS-Header setzen
-        $response->headers->set('Access-Control-Allow-Origin', 'http://localhost:4200');
-        $response->headers->set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-        $response->headers->set('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With, Accept, Origin');
-
-        return $response;
+    // Preflight-Request (OPTIONS) abfangen
+    if ($request->getMethod() === "OPTIONS") {
+        return response('', 204)->withHeaders($headers);
     }
+
+    $response = $next($request);
+    foreach ($headers as $key => $value) {
+        $response->headers->set($key, $value);
+    }
+
+    return $response;
+}
+
 }

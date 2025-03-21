@@ -14,12 +14,15 @@ Route::group([
         (array) config('backpack.base.web_middleware', 'web'),
         (array) config('backpack.base.middleware_key', 'admin')
     ),
-    'namespace' => 'App\Http\Controllers\Admin',
-], function () { // custom admin routes
-    Route::crud('channel', 'ChannelCrudController');
-    Route::crud('task', 'TaskCrudController');
-}); // this should be the absolute last line of this file
+], function () {
+    // DEBUG Testroute:
+    Route::get('debug-test', function () {
+        return 'Custom.php loaded!';
+    });// custom admin routes
 
-/**
- * DO NOT ADD ANYTHING HERE.
- */
+    // Backpack CRUDs hier mit FQCN eintragen:
+    Route::crud('channel', \App\Http\Controllers\Admin\ChannelCrudController::class);
+    Route::crud('task', \App\Http\Controllers\Admin\TaskCrudController::class);
+    Route::crud('members', \App\Http\Controllers\Admin\MembersCrudController::class);
+
+});
