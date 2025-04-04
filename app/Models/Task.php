@@ -17,6 +17,8 @@ class Task extends Model
         'progress',
         'creator',
         'status',
+        'category_id',
+        'board_id',
     ];
 
     protected $casts = [
@@ -24,4 +26,19 @@ class Task extends Model
         'labels'    => 'array',
         'due_date'  => 'date',
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(\App\Models\Category::class);
+    }
+
+    public function subtasks()
+{
+    return $this->hasMany(Subtask::class);
+}
+
+public function assignees()
+{
+    return $this->belongsToMany(User::class, 'task_user'); // task_user = Pivot-Tabelle für viele-zu-viele
+}
 }

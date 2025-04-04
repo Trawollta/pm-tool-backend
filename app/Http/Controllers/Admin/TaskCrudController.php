@@ -39,6 +39,12 @@ class TaskCrudController extends CrudController
      */
     protected function setupListOperation()
     {
+
+        $this->crud->addColumn([
+            'name' => 'category',
+            'label' => 'Category',
+            'type' => 'text',
+        ]);
         $this->crud->addColumn([
             'name'  => 'title',
             'label' => 'Title',

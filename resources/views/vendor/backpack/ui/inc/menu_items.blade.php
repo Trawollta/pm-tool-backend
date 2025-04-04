@@ -5,3 +5,6 @@
 <x-backpack::menu-item title="Tasks" icon="la la-question" :link="backpack_url('task')" />
 <x-backpack::menu-item title="Users" icon="la la-question" :link="backpack_url('user')" />
 <x-backpack::menu-item title="Members" icon="la la-question" :link="backpack_url('members')" />
+<x-backpack::menu-item title="Categories" icon="la la-question" :link="backpack_url('category')" />
+<x-backpack::menu-item title="Subtasks" icon="la la-question" :link="backpack_url('subtask')" />
+<x-backpack::menu-item title="Boards" icon="la la-question" :link="backpack_url('board')" />

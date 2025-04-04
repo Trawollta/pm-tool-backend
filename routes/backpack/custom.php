@@ -24,5 +24,7 @@ Route::group([
     Route::crud('channel', \App\Http\Controllers\Admin\ChannelCrudController::class);
     Route::crud('task', \App\Http\Controllers\Admin\TaskCrudController::class);
     Route::crud('members', \App\Http\Controllers\Admin\MembersCrudController::class);
-
+    Route::crud('category', \App\Http\Controllers\Admin\CategoryCrudController::class);
+    Route::crud('subtask', \App\Http\Controllers\Admin\SubtaskCrudController::class);
+    Route::crud('board', \App\Http\Controllers\Admin\BoardCrudController::class);
 });

@@ -13,13 +13,14 @@ return new class extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->date('due_date')->nullable();
-            $table->json('assignees')->nullable();
             $table->json('labels')->nullable();
+            $table->foreignId('category_id')->nullable()->constrained()->nullOnDelete();
             $table->unsignedTinyInteger('progress')->default(0);
             $table->unsignedBigInteger('creator');
             $table->string('status')->default('To Do');
             $table->timestamps();
         });
+        
     }
 
     public function down(): void
