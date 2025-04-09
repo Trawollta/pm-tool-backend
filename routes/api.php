@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\TaskController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\SubtaskController;
 use App\Http\Controllers\BoardController;
+use App\Http\Controllers\MessageController;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -23,4 +24,6 @@ Route::apiResource('tasks', TaskController::class);
 Route::apiResource('categories', CategoryController::class);
 Route::apiResource('subtasks', SubtaskController::class);
 Route::apiResource('boards', BoardController::class);
+Route::get('/messages', [MessageController::class, 'index']);
+Route::post('/messages', [MessageController::class, 'store']);
 
